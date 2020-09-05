@@ -1,0 +1,35 @@
+Dependencies for Project 'STM32F4', Target 'STM32F407': (DO NOT MODIFY !)
+CompilerVersion: 5060750::V5.06 update 6 (build 750)::.\ARMCC
+F (.\Code\Src\main.cpp)(0x5F53757F)(--cpp -c --cpu Cortex-M4.fp.sp -D__EVAL -g -O0 --apcs=interwork --split_sections -I ..\STM32F4 -I .\CMSIS\inc -I .\Mylib\Inc-IC:\Users\Diston\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.14.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="531" -DSTM32F407xx-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
+I (.\Mylib\Inc\mylib.h)(0x5F537001)
+I (.\CMSIS\inc\stm32f4xx.h)(0x5F537001)
+I (C:\Users\Diston\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.14.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f407xx.h)(0x5C5BD672)
+I (.\CMSIS\inc\core_cm4.h)(0x5F537001)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5EC7BC4C)
+I (.\CMSIS\inc\cmsis_version.h)(0x5F537001)
+I (.\CMSIS\inc\cmsis_compiler.h)(0x5F537001)
+I (.\CMSIS\inc\cmsis_armcc.h)(0x5F537001)
+I (.\CMSIS\inc\mpu_armv7.h)(0x5F537001)
+I (C:\Users\Diston\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.14.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h)(0x5C5BD672)
+F (.\CMSIS\src\system_stm32f4xx.c)(0x5F537001)(-c --cpu Cortex-M4.fp.sp -D__EVAL -g -O0 --apcs=interwork --split_sections -I ..\STM32F4 -I .\CMSIS\inc -I .\Mylib\Inc-IC:\Users\Diston\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.14.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="531" -DSTM32F407xx-o .\objects\system_stm32f4xx.o --omf_browse .\objects\system_stm32f4xx.crf --depend .\objects\system_stm32f4xx.d)
+I (.\CMSIS\inc\stm32f4xx.h)(0x5F537001)
+I (C:\Users\Diston\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.14.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f407xx.h)(0x5C5BD672)
+I (.\CMSIS\inc\core_cm4.h)(0x5F537001)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5EC7BC4C)
+I (.\CMSIS\inc\cmsis_version.h)(0x5F537001)
+I (.\CMSIS\inc\cmsis_compiler.h)(0x5F537001)
+I (.\CMSIS\inc\cmsis_armcc.h)(0x5F537001)
+I (.\CMSIS\inc\mpu_armv7.h)(0x5F537001)
+I (C:\Users\Diston\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.14.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h)(0x5C5BD672)
+F (.\Startup\startup_stm32f407xx.s)(0x5F537001)(--cpu Cortex-M4.fp.sp --pd "__EVAL SETA 1" -g --apcs=interwork -IC:\Users\Diston\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.14.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-IC:\Keil_v5\ARM\CMSIS\Include--pd "__UVISION_VERSION SETA 531" --pd "STM32F407xx SETA 1"--list .\listings\startup_stm32f407xx.lst --xref -o .\objects\startup_stm32f407xx.o --depend .\objects\startup_stm32f407xx.d)
+F (.\Mylib\Src\mylib.cpp)(0x5F53709B)(--cpp -c --cpu Cortex-M4.fp.sp -D__EVAL -g -O0 --apcs=interwork --split_sections -I ..\STM32F4 -I .\CMSIS\inc -I .\Mylib\Inc-IC:\Users\Diston\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.14.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="531" -DSTM32F407xx-o .\objects\mylib.o --omf_browse .\objects\mylib.crf --depend .\objects\mylib.d)
+I (.\Mylib\Inc\mylib.h)(0x5F537001)
+I (.\CMSIS\inc\stm32f4xx.h)(0x5F537001)
+I (C:\Users\Diston\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.14.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f407xx.h)(0x5C5BD672)
+I (.\CMSIS\inc\core_cm4.h)(0x5F537001)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5EC7BC4C)
+I (.\CMSIS\inc\cmsis_version.h)(0x5F537001)
+I (.\CMSIS\inc\cmsis_compiler.h)(0x5F537001)
+I (.\CMSIS\inc\cmsis_armcc.h)(0x5F537001)
+I (.\CMSIS\inc\mpu_armv7.h)(0x5F537001)
+I (C:\Users\Diston\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.14.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h)(0x5C5BD672)
