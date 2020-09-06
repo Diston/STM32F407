@@ -1,3 +1,3 @@
 #include "stm32f4xx.h"
 
-void RCC_INIT (void);
+void GPIO_Init (void);

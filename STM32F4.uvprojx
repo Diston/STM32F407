@@ -339,7 +339,7 @@
               <MiscControls></MiscControls>
               <Define></Define>
               <Undefine></Undefine>
-              <IncludePath>..\STM32F4;.\CMSIS\inc;.\Mylib\Inc;.\FreeRTOS\inc</IncludePath>
+              <IncludePath>..\STM32F4;.\CMSIS\inc;.\FreeRTOS\inc;.\Mylibs\Inc</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -411,12 +411,27 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>Mylib</GroupName>
+          <GroupName>Mylibs</GroupName>
           <Files>
             <File>
-              <FileName>mylib.cpp</FileName>
+              <FileName>encoder.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>.\Mylib\Src\mylib.cpp</FilePath>
+              <FilePath>.\Mylibs\Src\encoder.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>rcc.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\Mylibs\Src\rcc.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>gpio.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\Mylibs\Src\gpio.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>lcd.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\Mylibs\Src\lcd.cpp</FilePath>
             </File>
           </Files>
         </Group>

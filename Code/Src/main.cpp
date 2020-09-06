@@ -1,25 +1,28 @@
-#include "mylib.h"
+#include "rcc.h"
 #include "FreeRTOS.h"
 #include "task.h"
 #include "queue.h"
+#include "gpio.h"
+#include "lcd.h"
+
+bool FlagPushButton;
 
 void vTask1 (void *argument);
 void vTask2 (void *argument);
+void vTask3 (void *argument);
+void vTask4 (void *argument);
 
 int main (void){
 
-	RCC_INIT();
+	RCC_Init();
+	GPIO_Init();
+	LCD_Init();
+	LCD_Send();
 	
-	RCC->AHB1ENR |= RCC_AHB1ENR_GPIODEN;
-	GPIOD->MODER |= GPIO_MODER_MODER15_0;
-	GPIOD->OSPEEDR |= GPIO_OSPEEDER_OSPEEDR15_0;
-	GPIOD->MODER |= GPIO_MODER_MODER13_0;
-	GPIOD->OSPEEDR |= GPIO_OSPEEDER_OSPEEDR13_0;
-		GPIOD->MODER |= GPIO_MODER_MODER12_0;
-	GPIOD->OSPEEDR |= GPIO_OSPEEDER_OSPEEDR12_0;
-	
-	xTaskCreate (vTask1, "Blink", 50, NULL, 1, NULL);
+	xTaskCreate (vTask1, "Blink", 50, NULL, 2, NULL);
 	xTaskCreate (vTask2, "Blink2", 50, NULL, 2, NULL);
+	xTaskCreate (vTask3, "Blink3", 50, NULL, 2, NULL);
+	xTaskCreate (vTask4, "Blink4", 50, NULL, 2, NULL);
 	
 	vTaskStartScheduler();
 	
@@ -35,9 +38,9 @@ void vTask1 (void *argument) {
 	while (1) {
 				
 		GPIOD->BSRR |= GPIO_BSRR_BS15;
-		vTaskDelay (300);
+		vTaskDelay (500);
 		GPIOD->BSRR |= GPIO_BSRR_BR15;
-		vTaskDelay (300);
+		vTaskDelay (500);
 		
 	}
 }
@@ -46,11 +49,40 @@ void vTask2 (void *argument){
 	
 	while (1) {
 				
-		GPIOD->BSRR |= GPIO_BSRR_BS13;
-		vTaskDelay (300);
-		GPIOD->BSRR |= GPIO_BSRR_BR13;
-		vTaskDelay (300);
+
 		
 	}
 	
 }
+
+void vTask3 (void *argument){
+	
+	while (1) {
+				
+		GPIOD->BSRR |= GPIO_BSRR_BS12;
+		vTaskDelay (1000);
+		GPIOD->BSRR |= GPIO_BSRR_BR12;
+		vTaskDelay (1000);
+		
+	}
+	
+}
+
+void vTask4 (void *argument){
+	
+	while (1) {
+		
+		if (((GPIOA->IDR & GPIO_IDR_ID0) == 0) &&  (FlagPushButton)) {
+			FlagPushButton = false;
+		}
+		if (((GPIOA->IDR & GPIO_IDR_ID0) != 0) && (FlagPushButton == false))  { 
+			GPIOD->ODR ^= GPIO_ODR_ODR_14;
+			FlagPushButton = true;
+		}
+		vTaskDelay (20);
+			
+	}
+	
+}
+
+

@@ -1,6 +1,6 @@
-#include "mylib.h"
+#include "rcc.h"
 
-void RCC_INIT (void){
+void RCC_Init (void){
 	
 	FLASH->ACR = FLASH_ACR_PRFTEN | FLASH_ACR_LATENCY;        																															// Кэширование данных и задержка флеш памяти для стабильной работы
 	
