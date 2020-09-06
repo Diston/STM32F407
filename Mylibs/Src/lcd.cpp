@@ -1,7 +1,6 @@
 #include "lcd.h"
 
-
-void LCD_Init (void){
+void I2C1_Init (void){
 	
 	RCC->AHB1ENR |= RCC_AHB1ENR_GPIOBEN;
 	RCC->APB1ENR |= RCC_APB1ENR_I2C1EN;
@@ -25,23 +24,19 @@ void LCD_Init (void){
 }
 
 
-void LCD_Send (void){
+void LCD_Send (uint8_t LCDAddr, uint8_t LCDData){
 	
 	I2C1->CR1 &= ~I2C_CR1_POS;
-	I2C1->CR1 = ((I2C1->CR1 & ~I2C_CR1_ACK) | I2C_CR1_ACK);
 	
 	I2C1->CR1 |= I2C_CR1_START;
   while (!(I2C1->SR1 & I2C_SR1_SB));
-	//(void)I2C1->SR1;
 
-	I2C1->DR = ((I2C1->DR & ~I2C_DR_DR) | 0x4E);
-
+	I2C1->DR = ((I2C1->DR & ~I2C_DR_DR) | LCDAddr);
 	while (!(I2C1->SR1 & I2C_SR1_ADDR));
-	(void)I2C1->SR1;
-	(void)I2C1->SR2;
-	while (!(I2C1->SR1 & I2C_SR1_ADDR));
-	while (I2C1->SR2 && 0);
-	I2C1->DR = (I2C1->DR & ~I2C_DR_DR) | 0x04;
+	
+	volatile uint16_t LCDReadSR2 = I2C1->SR2;
+	
+	I2C1->DR = (I2C1->DR & ~I2C_DR_DR) | LCDData;
   while (!(I2C1->SR1 & I2C_SR1_TXE));
 	
 	I2C1->CR1 |= I2C_CR1_STOP;
