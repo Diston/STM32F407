@@ -54,10 +54,10 @@ void LCD_Send (uint8_t LCDAddr, uint8_t LCDData){
 void LCDSendHalfByte (uint8_t LCDAddr, uint8_t LCDData){
 	LCDData<<=4;
 	LCD_Send (LCDAddr, portlcd|=0x04);
-	LCDDelay (1000);
+	//LCDDelay (1000);
 	LCD_Send (LCDAddr, portlcd|LCDData);
 	LCD_Send (LCDAddr, portlcd&=~0x04);
-	LCDDelay (1000);
+	//LCDDelay (1000);
 }
 
 void LCDSendByte (uint8_t LCDAddr, uint8_t LCDData, uint8_t mode){
@@ -120,7 +120,7 @@ void LCDSendDec (uint8_t LCDAddr, uint32_t LCDData){
 		LCDData2 = LCDData2 / 10;
 		i++;
 	}
-	i--;
+	if (i>0) i--;
 	
 	while (i>=0){
 		LCDSendChar (LCDAddr, LCDData3[i]+'0');

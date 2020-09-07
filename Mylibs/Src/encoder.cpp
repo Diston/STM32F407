@@ -14,7 +14,7 @@ void Encoder_Init(void)
 	TIM3->CCMR1 = TIM_CCMR1_CC1S_0 | TIM_CCMR1_CC2S_0;
 	TIM3->CCER = TIM_CCER_CC1P | TIM_CCER_CC2P;
 	TIM3->PSC = 0;   				// Выставляем время 1 тика таймера
-	TIM3->ARR = 100;   					// До скольки считаем
+	TIM3->ARR = 1000;   					// До скольки считаем
 	TIM3->CR1 |= TIM_CR1_CEN;
-	TIM3->CNT = 50;
+	TIM3->CNT = 500;
 }
