@@ -1,5 +1,12 @@
 #include "lcd.h"
 
+uint8_t portlcd;
+
+static inline void LCDDelay (uint32_t delay){
+	delay = delay * (168/1000);
+	while (delay--);
+}
+
 void I2C1_Init (void){
 	
 	RCC->AHB1ENR |= RCC_AHB1ENR_GPIOBEN;
@@ -21,6 +28,8 @@ void I2C1_Init (void){
 	
 	I2C1->CR1 |= I2C_CR1_PE;
 	I2C1->CR1 |= I2C_CR1_ACK;
+	
+	
 }
 
 
@@ -41,3 +50,86 @@ void LCD_Send (uint8_t LCDAddr, uint8_t LCDData){
 	
 	I2C1->CR1 |= I2C_CR1_STOP;
 }
+
+void LCDSendHalfByte (uint8_t LCDAddr, uint8_t LCDData){
+	LCDData<<=4;
+	LCD_Send (LCDAddr, portlcd|=0x04);
+	LCDDelay (1000);
+	LCD_Send (LCDAddr, portlcd|LCDData);
+	LCD_Send (LCDAddr, portlcd&=~0x04);
+	LCDDelay (1000);
+}
+
+void LCDSendByte (uint8_t LCDAddr, uint8_t LCDData, uint8_t mode){
+	if (mode==0)  LCD_Send (LCDAddr, portlcd&=~0x01);
+	else LCD_Send (LCDAddr, portlcd|=0x01);
+	uint8_t hc=0;
+	hc=LCDData>>4;
+	LCDSendHalfByte (LCDAddr, hc);
+	LCDSendHalfByte (LCDAddr, LCDData);
+}
+
+void LCDLight (void) {
+	
+	LCD_Send (0x4E, portlcd|=0x08);
+
+}
+
+void LCDSendChar (uint8_t LCDAddr, char LCDData){
+	
+	LCDSendByte (LCDAddr, (uint8_t) LCDData, 1);
+	
+}
+
+void LCDSendString (uint8_t LCDAddr, char* LCDData){
+	
+	uint8_t i=0;
+	
+	while (LCDData[i]!=0)
+	{
+		LCDSendByte (LCDAddr, LCDData[i], 1);
+		i++;
+	}
+}
+
+void LCDClear (uint8_t LCDAddr){
+	LCDSendByte (LCDAddr, 0x01, 0);
+}
+
+void LCDSendReg (uint8_t LCDAddr, uint32_t LCDData){
+	for (int8_t i=28; i>=0; i=i-4){
+		int32_t LCDReg = LCDData>>i;
+		LCDReg &= 0xF;
+		if (LCDReg <=0x9) {
+			LCDSendChar (LCDAddr, LCDReg + '0');
+		}
+		else {
+			LCDSendChar (LCDAddr, LCDReg - 0x9 + '@');
+		}
+	}
+}
+
+void LCDSendDec (uint8_t LCDAddr, uint32_t LCDData){
+
+	int8_t i=0;
+	uint32_t LCDData2 = LCDData;
+	uint8_t LCDData3[10];
+	
+	while (LCDData2>0){
+		LCDData3[i] = LCDData2 % 10;
+		LCDData2 = LCDData2 / 10;
+		i++;
+	}
+	i--;
+	
+	while (i>=0){
+		LCDSendChar (LCDAddr, LCDData3[i]+'0');
+		i--;
+	}
+}
+		
+	
+		
+
+
+
